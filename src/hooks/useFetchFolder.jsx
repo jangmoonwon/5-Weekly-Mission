@@ -3,6 +3,8 @@ const BASE_URL = "https://bootcamp-api.codeit.kr/api/sample";
 
 export function useFetchFolder() {
   const [data, setData] = useState();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
 
   const fetchData = async () => {
     try {
@@ -14,7 +16,9 @@ export function useFetchFolder() {
         throw new Error("불러오는데 실패 했습니다.");
       }
     } catch (error) {
-      console.error(error);
+      setError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -23,5 +27,5 @@ export function useFetchFolder() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return data;
+  return { data, loading, error };
 }

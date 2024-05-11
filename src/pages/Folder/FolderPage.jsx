@@ -5,21 +5,54 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import FolderList from "../FolderList/FolderList";
 import "../Folder/FolderPage.css";
 import addImg from "../../assets/add.svg";
-import share from "../../assets/share.svg";
-import pen from "../../assets/pen.svg";
-import deleteIcon from "../../assets/delete.svg";
 import { Layout } from "../../sharing/ui-layout/Layout";
+import { AddFolderModal } from "../../components/Modal/AddFolderModal/AddFolderModal";
+import { DeleteFolderModal } from "../../components/Modal/DeleteFolderModal/DeleteFolderModal";
+import { ShareModal } from "../../components/Modal/ShareModal/ShareModal";
+import shareIcon from "../../assets/share.svg";
+import penIcon from "../../assets/pen.svg";
+import deleteIcon from "../../assets/delete.svg";
+import { EditFolderModal } from "../../components/Modal/EditFolderModal/EditFolderModal";
 
 function FolderPage() {
-  const userdata = useUsersFolder();
+  const { data } = useUsersFolder();
 
   const [activeButton, setActiveButton] = useState("전체");
   const [activeButtonId, setActiveButtonId] = useState("");
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [isShare, setIsShare] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [isDelete, setIsDelete] = useState(false);
 
   const handleFolderClick = (folderId, folderName) => {
     setActiveButton(folderName);
     setActiveButtonId(folderId);
   };
+
+  const handleModalOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleShareClick = () => {
+    setIsShare(true);
+  };
+
+  const handleEditClick = () => {
+    setIsEdit(true);
+  };
+
+  const handleDeleteClick = () => {
+    setIsDelete(true);
+  };
+
+  const handleClosedModal = () => {
+    setIsOpen(false);
+    setIsShare(false);
+    setIsEdit(false);
+    setIsDelete(false);
+  };
+
   return (
     <Layout isSticky={false}>
       <LinkBar />
@@ -34,8 +67,8 @@ function FolderPage() {
             >
               전체
             </button>
-            {userdata &&
-              userdata.data.map((item) => (
+            {data &&
+              data.data.map((item) => (
                 <div key={item.id}>
                   <div className="toolbar">
                     <button
@@ -50,22 +83,31 @@ function FolderPage() {
               ))}
           </div>
           <div className="add-btn-box">
-            <button className="add-btn">폴더 추가</button>
+            <button className="add-btn" onClick={handleModalOpen}>
+              폴더 추가
+            </button>
+            {isOpen && <AddFolderModal onClose={handleClosedModal} />}
             <img className="add-icon" src={addImg} alt="폴더 추가 이미지" />
           </div>
           {activeButton !== "전체" ? (
             <div className="btns-box">
-              <img src={share} alt="share" />
-              <button>공유</button>
-              <img src={pen} alt="pen" />
-              <button>이름 변경</button>
-              <img src={deleteIcon} alt="delete" />
-              <button>삭제</button>
+              <button className="btns-item" onClick={handleShareClick}>
+                <img src={shareIcon} alt="share" />
+                <span className="btns-text">공유</span>
+              </button>
+              <button className="btns-item" onClick={handleEditClick}>
+                <img src={penIcon} alt="edit" />
+                <span className="btns-text">이름 변경</span>
+              </button>
+              <button className="btns-item" onClick={handleDeleteClick}>
+                <img src={deleteIcon} alt="delete" />
+                <span className="btns-text">삭제</span>
+              </button>
+              {isShare && <ShareModal onClose={handleClosedModal} />}
+              {isEdit && <EditFolderModal onClose={handleClosedModal} />}
+              {isDelete && <DeleteFolderModal onClose={handleClosedModal} />}
             </div>
-          ) : (
-            ""
-          )}
-
+          ) : null}
           <span className="folder-name">{activeButton}</span>
         </div>
         {activeButtonId === "" ? (

@@ -21,7 +21,7 @@
   width: 100%;
   grid-template-areas:
     "folders folders add-button"
-    "folder-name . buttons";
+    "folder-name buttons buttons";
   justify-content: space-between;
   gap: 2.4rem;
 }
@@ -29,7 +29,6 @@
 .toolbar-box {
   display: flex;
   gap: 1.2rem;
-  flex-grow: 1;
   flex-wrap: wrap;
   grid-area: folders;
 }
@@ -47,6 +46,14 @@
   font-size: 1.6rem;
   height: 3.7rem;
   padding: 0 1.2rem;
+
+  &:hover {
+    background-color: #e7effb;
+  }
+
+  &.active {
+    background-color: pink;
+  }
 }
 
 .folder-name {
@@ -81,6 +88,19 @@
 
 .btns-box {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   grid-area: buttons;
+  gap: 1.2rem;
+}
+
+.btns-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btns-text {
+  color: #9fa6b2;
 }

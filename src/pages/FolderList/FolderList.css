@@ -2,3 +2,13 @@
   display: flex;
   justify-content: space-between;
 }
+
+.star-icon {
+  position: absolute;
+  left: 88%;
+  top: 3%;
+}
+
+.card-Thumbnail-container {
+  position: relative;
+}

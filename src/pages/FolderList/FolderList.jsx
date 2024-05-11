@@ -3,6 +3,7 @@ import { useFolderList } from "../../hooks/useFolderList";
 import noImageLogo from "../../assets/noImageLogo.svg";
 import KebabButton from "../../components/KebabButton/KebabButton";
 import { getElapsedTime } from "../../util/getElapsedTime";
+import starIcon from "../../assets/star.svg";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -10,15 +11,16 @@ function formatDate(value) {
 }
 
 function FolderList() {
-  const folderdata = useFolderList();
+  const { data } = useFolderList();
   return (
     <div className="container">
       <div className="card-container">
-        {folderdata &&
-          folderdata.data.map((item) => (
+        {data &&
+          data.data.map((item) => (
             <div className="card" key={item.id}>
               {/* <a href={item.url} target="_blank" rel="noreferrer"> */}
               <div className="card-Thumbnail-container">
+                <img className="star-icon" src={starIcon} alt="star" />
                 {item.image_source ? (
                   <img
                     className="card-thumbnail"
@@ -38,7 +40,7 @@ function FolderList() {
                   <p className="card-created-at">
                     {getElapsedTime(item.created_at)}
                   </p>
-                  <KebabButton />
+                  <KebabButton item={item.url} />
                 </div>
                 <p className="card-description">{item.description}</p>
                 <p className="card-created-at">{formatDate(item.created_at)}</p>

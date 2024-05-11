@@ -8,7 +8,7 @@ import { Profile } from "../Profile/Profile";
 const cx = classNames.bind(styles);
 
 export const NavigationBar = ({ isSticky }) => {
-  const { data } = useFetchUser();
+  const { data, loading } = useFetchUser();
   const { email, profileImageSource } = data || {};
   const profile = data ? { email, profileImageSource } : null;
 
@@ -18,7 +18,14 @@ export const NavigationBar = ({ isSticky }) => {
         <Link to="/">
           <img src={Logo} alt="Linkbrary-logo" />
         </Link>
-        {profile ? <Profile profile={profile} /> : "로그인 버튼"}
+        {/* {profile ? <Profile profile={profile} /> : "로그인 버튼"} */}
+        {loading ? (
+          <h1>로딩</h1>
+        ) : profile ? (
+          <Profile profile={profile} />
+        ) : (
+          "로그인 버튼"
+        )}
       </div>
     </nav>
   );
