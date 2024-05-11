@@ -1,4 +1,4 @@
-@import "../../styles/global.scss";
+@import "../../../styles/global.scss";
 
 .container {
   position: fixed;
@@ -50,6 +50,7 @@
 
 .text-box {
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 0.8rem;
 }
@@ -64,18 +65,28 @@
 .btn-box {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   max-width: 28rem;
-  background-color: $color-red;
   border-radius: 0.8rem;
   padding: 1.6rem 2rem;
 }
 
-.delete-btn {
-  color: #f5f5f5;
-  font-size: 1.6rem;
+.share-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.share-icon {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+.share-text {
+  font-family: Inter;
+  font-size: 1.3rem;
   font-style: normal;
-  font-weight: 600;
-  line-height: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
 }
