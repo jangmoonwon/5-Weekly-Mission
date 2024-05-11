@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { LinkDeleteModal } from "../Modal/LinkDeleteModal/LinkDeleteModal";
+import { TestModal } from "../Modal/TestModal/TestModal";
 import kebabIcon from "../../assets/kebab.svg";
 import "../KebabButton/KebabButton.css";
-import { LinkDeletModal } from "../../sharing/ui-modal-layout/LinkDeletModal";
 
-function KebabButton() {
+function KebabButton({ item }) {
   const [isOpen, setIsOpen] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [addModal, setAddModal] = useState(false);
@@ -18,6 +19,11 @@ function KebabButton() {
 
   const handleAddModal = () => {
     setAddModal(true);
+  };
+
+  const handleClosedModal = () => {
+    setModalIsOpen(false);
+    setAddModal(false);
   };
 
   return (
@@ -35,8 +41,10 @@ function KebabButton() {
           </li>
         </ul>
       )}
-      {modalIsOpen && <LinkDeletModal />}
-      {addModal && <p>hi</p>}
+      {modalIsOpen && (
+        <LinkDeleteModal item={item} onClose={handleClosedModal} />
+      )}
+      {addModal && <TestModal onClose={handleClosedModal} />}
     </div>
   );
 }
