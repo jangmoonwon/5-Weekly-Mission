@@ -1,60 +1,23 @@
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { MouseEvent, useState } from "react";
+import { useRouter } from "next/router";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./signup.module.scss";
 import classNames from "classnames/bind";
-import { LoginLayout } from "@/components/layout/LoginLayout/LoginLayout";
-import Logo from "@/public/logo.svg";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { schemaCheck, FormFieldsCheck } from "@/lib/schema";
+import { LoginLayout } from "@/components/layout/login-layout/LoginLayout";
 import Eyeoff from "@/public/Eyeoff.svg";
 import Eyeon from "@/public/Eyeon.svg";
-import Googlelogin from "@/public/Googlelogin.svg";
-import Kakaologin from "@/public/Kakaologin.svg";
-import { MouseEvent, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
-import { useRouter } from "next/router";
+import LoginHeader from "@/components/login-header/LoginHeader";
+import SocialBox from "@/components/login-social-box/SocialBox";
 
 const cx = classNames.bind(styles);
-
-type FormFields = z.infer<typeof schema>;
-
-const pwdValidation = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-const schema = z
-  .object({
-    email: z
-      .string()
-      .min(1, { message: "이메일을 입력해 주세요." })
-      .email({ message: "올바른 이메일 주소가 아닙니다." }),
-    password: z
-      .string()
-      .min(1, { message: "비밀번호를 입력해 주세요." })
-      .max(16, { message: "최대 16자리입니다." })
-      .regex(pwdValidation, {
-        message: "영문, 숫자를 조합해 8자 이상 입력해 주세요.",
-      }),
-    passwordCheck: z
-      .string()
-      .min(1, { message: "비밀번호를 입력해 주세요." })
-      .max(16, { message: "최대 16자리입니다." })
-      .regex(pwdValidation, {
-        message: "영문, 숫자를 조합해 8자 이상 입력해 주세요.",
-      }),
-  })
-  .refine((data) => data.email !== "test@codeit.com", {
-    message: "이미 사용 중인 이메일입니다.",
-    path: ["email"],
-  })
-  .refine((data) => data.password === data.passwordCheck, {
-    message: "비밀번호가 일치하지 않아요.",
-    path: ["passwordCheck"],
-  });
 
 export default function Signup() {
   const [isShowPwd, setIsShowPwd] = useState(false);
   const [isShowPwdCheck, setIsShowPwdCheck] = useState(false);
-  const [search, setSearch] = useState("");
   const router = useRouter();
 
   const handleToggleClick = (e: MouseEvent) => {
@@ -67,27 +30,17 @@ export default function Signup() {
     setIsShowPwdCheck(!isShowPwdCheck);
   };
 
-  const handleChange = (e: any) => {
-    setSearch(e.target.value);
-  };
-
-  const handleKeyDown = (e: any) => {
-    if (e.key === "Enter") {
-      router.push("/folder");
-    }
-  };
-
   const {
     register,
     handleSubmit,
     setError,
-    formState: { errors, isSubmitting },
-  } = useForm<FormFields>({
-    resolver: zodResolver(schema),
+    formState: { errors },
+  } = useForm<FormFieldsCheck>({
+    resolver: zodResolver(schemaCheck),
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<FormFields> = async (data) => {
+  const onSubmit: SubmitHandler<FormFieldsCheck> = async (data) => {
     try {
       const res = await axiosInstance.post("check-email", data);
       const newRes = res.data;
@@ -104,20 +57,6 @@ export default function Signup() {
 
   const showIcon = <Image src={Eyeon} alt="eye-on" width={16} height={16} />;
   const hideIcon = <Image src={Eyeoff} alt="eye-off" width={16} height={16} />;
-
-  const loginHeader = (
-    <header className={cx("header-container")}>
-      <Link href="/">
-        <Image src={Logo} alt="Logo" width={210} height={38} priority />
-      </Link>
-      <div className={cx("header-content")}>
-        <span className={cx("header-message")}>이미 회원이신가요?</span>
-        <Link href="/signin" className={cx("header-link")}>
-          로그인 하기
-        </Link>
-      </div>
-    </header>
-  );
 
   const loginForm = (
     <form className={cx("container")} onSubmit={handleSubmit(onSubmit)}>
@@ -145,9 +84,12 @@ export default function Signup() {
           id="password"
           type={isShowPwd ? "text" : "password"}
           placeholder="비밀번호를 입력해 주세요."
-          autoComplete="off"
         />
-        <button className={cx("eye-icon")} onClick={handleToggleClick}>
+        <button
+          className={cx("eye-icon")}
+          onClick={handleToggleClick}
+          type="button"
+        >
           {isShowPwd ? showIcon : hideIcon}
         </button>
       </div>
@@ -166,11 +108,12 @@ export default function Signup() {
           id="passwordCheck"
           type={isShowPwdCheck ? "text" : "password"}
           placeholder="비밀번호를 입력해 주세요."
-          autoComplete="off"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
         />
-        <button className={cx("eye-icon")} onClick={handleToggleCheckClick}>
+        <button
+          className={cx("eye-icon")}
+          onClick={handleToggleCheckClick}
+          type="button"
+        >
           {isShowPwdCheck ? showIcon : hideIcon}
         </button>
       </div>
@@ -179,31 +122,21 @@ export default function Signup() {
           {errors.passwordCheck.message}
         </div>
       )}
-      <button className={cx("button")} type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Loaing.." : "로그인"}
+      <button className={cx("button")} type="submit">
+        회원가입
       </button>
     </form>
   );
 
-  const loginSocial = (
-    <div className={cx("social-login-container")}>
-      <span className={cx("social-login-text")}>다른 방식으로 가입하기</span>
-      <div className={cx("social-login-icon")}>
-        <Link href="https://www.google.com">
-          <Image src={Googlelogin} width={42} height={42} alt="google" />
-        </Link>
-        <Link href="https://www.kakaocorp.com/page">
-          <Image src={Kakaologin} width={42} height={42} alt="kakao" />
-        </Link>
-      </div>
-    </div>
-  );
-
   return (
     <LoginLayout>
-      {loginHeader}
+      <LoginHeader
+        href={"/signin"}
+        message={"이미 회원이신가요?"}
+        linkName={"로그인 하기"}
+      />
       {loginForm}
-      {loginSocial}
+      <SocialBox text={"다른 방식으로 가입하기"} />
     </LoginLayout>
   );
 }
