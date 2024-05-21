@@ -6,7 +6,7 @@ import classNames from "classnames/bind";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaCheck, FormFieldsCheck } from "@/lib/schema";
-import { LoginLayout } from "@/components/layout/login-layout/LoginLayout";
+import { LoginLayout } from "@/components/layout/page-layout/LoginLayout/LoginLayout";
 import Eyeoff from "@/public/Eyeoff.svg";
 import Eyeon from "@/public/Eyeon.svg";
 import axiosInstance from "../api/axiosInstance";
