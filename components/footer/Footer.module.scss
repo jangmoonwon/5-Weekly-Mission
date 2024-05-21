@@ -1,0 +1,66 @@
+@import "@/styles/global.scss";
+
+.container {
+  width: 100%;
+  height: 16rem;
+  padding-top: 3.2rem;
+  background-color: $color-black;
+  margin-top: 10rem;
+}
+
+.footer-content {
+  display: flex;
+  padding: 0 10.4rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copyright {
+  color: #676767;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footer-faq {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  color: #676767;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.footer-logos {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+@media (max-width: 767px) {
+  .footer-content {
+    width: 100%;
+    height: 9.6rem;
+    padding: 0 3.2rem;
+    align-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .footer-content .footer-copyright {
+    display: flex;
+    width: 100%;
+    order: 3;
+  }
+
+  .footer-content .footer-faq {
+    order: 1;
+    gap: 6rem;
+  }
+
+  .footer-content .footer-logos {
+    order: 2;
+  }
+}
