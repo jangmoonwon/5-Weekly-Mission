@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./SocialBox.module.scss";
 import classNames from "classnames/bind";
-import Googlelogin from "@/public/Googlelogin.svg";
-import Kakaologin from "@/public/Kakaologin.svg";
+import Googlelogin from "@/public/google-login.svg";
+import Kakaologin from "@/public/kakao-login.svg";
 
 const cx = classNames.bind(styles);
 
