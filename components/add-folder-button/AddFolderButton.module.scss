@@ -1,0 +1,19 @@
+@import "@/styles/global.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  color: $color-primary;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.text {
+  color: $color-primary;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
