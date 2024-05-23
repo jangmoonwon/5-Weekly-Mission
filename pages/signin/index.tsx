@@ -6,11 +6,11 @@ import classNames from "classnames/bind";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormFields } from "@/lib/schema";
-import { LoginLayout } from "@/components/layout/page-layout/LoginLayout/LoginLayout";
+import { LoginLayout } from "@/components/layout/page-layout/login-layout/LoginLayout";
 import Eyeoff from "@/public/eye-off.svg";
 import Eyeon from "@/public/eye-on.svg";
-import SocialBox from "@/components/login-social-box/SocialBox";
-import LoginHeader from "@/components/login-header/LoginHeader";
+import SocialBox from "@/components/login/ui-login-social-box/SocialBox";
+import LoginHeader from "@/components/login/ui-login-header/LoginHeader";
 import axiosInstance from "../api/axiosInstance";
 
 const cx = classNames.bind(styles);
@@ -36,7 +36,7 @@ export default function Signin() {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      const res = await axiosInstance.post("sign-in", data);
+      const res = await axiosInstance.post("/sign-in", data);
       const newRes = res.data;
       const accessToken = newRes.data.accessToken;
 

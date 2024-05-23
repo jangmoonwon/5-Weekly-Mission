@@ -6,12 +6,12 @@ import classNames from "classnames/bind";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaCheck, FormFieldsCheck } from "@/lib/schema";
-import { LoginLayout } from "@/components/layout/page-layout/LoginLayout/LoginLayout";
+import { LoginLayout } from "@/components/layout/page-layout/login-layout/LoginLayout";
 import Eyeoff from "@/public/eye-off.svg";
 import Eyeon from "@/public/eye-on.svg";
 import axiosInstance from "../api/axiosInstance";
-import LoginHeader from "@/components/login-header/LoginHeader";
-import SocialBox from "@/components/login-social-box/SocialBox";
+import LoginHeader from "@/components/login/ui-login-header/LoginHeader";
+import SocialBox from "@/components/login/ui-login-social-box/SocialBox";
 
 const cx = classNames.bind(styles);
 
