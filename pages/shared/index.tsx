@@ -1,30 +1,41 @@
 import Layout from "@/components/layout/layout/Layout";
-import { useGetFolder } from "../api/useGetFolder";
+import { useFolder } from "../api/useFolder";
 import FolderInfo from "@/components/folder-info/FolderInfo";
 import SearchBar from "@/components/search-bar/SearchBar";
-import SharedLayout from "@/components/layout/page-layout/SharedLayout/SharedLayout";
 import CardList from "@/components/card-list/CardList";
 import Card from "@/components/card/Card";
 import formatDate from "@/lib/formatDate";
 import { getElapsedTime } from "@/lib/getElapsedTime";
+import styles from "./Shared.module.scss";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(styles);
+
+interface CardProps {
+  id: number;
+  url: string;
+  imageSource: string;
+  alt: string;
+  elapsedTime: string;
+  description: string;
+  createdAt: string;
+}
 
 export default function Shared() {
-  const { data } = useGetFolder();
+  const { data } = useFolder();
 
   return (
     <Layout isSticky={false}>
-      <SharedLayout
-        folderInfo={
-          <FolderInfo
-            folderName={data?.folder.name}
-            ownerName={data?.folder.owner.name}
-            profileImage={data?.folder.owner.profileImageSource}
-          />
-        }
-        seachBar={<SearchBar />}
-        cardList={
+      <div className={cx("container")}>
+        <FolderInfo
+          folderName={data?.folder.name}
+          ownerName={data?.folder.owner.name}
+          profileImage={data?.folder.owner.profileImageSource}
+        />
+        <div className={cx("item")}>
+          <SearchBar />
           <CardList>
-            {data?.folder.links.map((item: any) => (
+            {data?.folder.links.map((item: CardProps) => (
               <Card
                 key={item.id}
                 href={item.url}
@@ -36,8 +47,8 @@ export default function Shared() {
               />
             ))}
           </CardList>
-        }
-      />
+        </div>
+      </div>
     </Layout>
   );
 }
