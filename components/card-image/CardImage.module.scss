@@ -4,4 +4,12 @@
   height: 19.2rem;
   border-radius: 1.5rem 1.5rem 0 0;
   overflow: hidden;
+  object-fit: cover;
+  position: relative;
+}
+
+.star-icon {
+  position: absolute;
+  top: 10%;
+  right: 5%;
 }

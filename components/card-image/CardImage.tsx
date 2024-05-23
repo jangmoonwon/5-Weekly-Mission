@@ -10,7 +10,10 @@ interface CardImageProps {
 
 const cx = classNames.bind(styles);
 
-export default function CardImage({ imageSource, alt }: CardImageProps) {
+export default function CardImage({
+  imageSource,
+  alt,
+}: CardImageProps) {
   return (
     <div className={cx("container")}>
       <Image
@@ -18,6 +21,7 @@ export default function CardImage({ imageSource, alt }: CardImageProps) {
         alt={alt}
         width={340}
         height={192}
+        style={{ objectFit: "cover" }}
       />
     </div>
   );
