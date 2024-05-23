@@ -3,7 +3,7 @@ import styles from "./Layout.module.scss";
 import classNames from "classnames/bind";
 import Footer from "@/components/footer/Footer";
 import NavigationBar from "@/components/navigation-bar/NavigationBar";
-import { useGetUser } from "@/pages/api/useGetUser";
+import { useUser } from "@/pages/api/useUser";
 
 const cx = classNames.bind(styles);
 
@@ -13,7 +13,7 @@ interface LayoutProps {
 }
 
 export default function Layout({ children, isSticky = true }: LayoutProps) {
-  const { data } = useGetUser();
+  const { data } = useUser();
   const profile = data
     ? { email: data.email, imageSource: data.profileImageSource }
     : null;

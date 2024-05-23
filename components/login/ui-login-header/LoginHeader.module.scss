@@ -1,0 +1,24 @@
+@import "@/styles/global.scss";
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.header-content {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.header-message {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.header-link {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: $color-primary;
+  border-bottom: 0.1rem solid $color-primary;
+}
