@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaCheck, FormFieldsCheck } from "@/lib/schema";
 import axiosInstance from "@/pages/api/axiosInstance";
-import styles from "./SigninForm.module.scss";
+import styles from "./SignupForm.module.scss";
 import classNames from "classnames/bind";
 import Eyeoff from "@/public/eye-off.svg";
 import Eyeon from "@/public/eye-on.svg";
