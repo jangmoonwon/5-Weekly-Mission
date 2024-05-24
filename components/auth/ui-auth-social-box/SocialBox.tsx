@@ -7,7 +7,7 @@ import Kakaologin from "@/public/kakao-login.svg";
 
 const cx = classNames.bind(styles);
 
-export default function SocialBox({ text }: { text: string }) {
+export const SocialBox = ({ text }: { text: string }) => {
   return (
     <div className={cx("social-login-container")}>
       <span className={cx("social-login-text")}>{text}</span>
@@ -21,4 +21,4 @@ export default function SocialBox({ text }: { text: string }) {
       </div>
     </div>
   );
-}
+};

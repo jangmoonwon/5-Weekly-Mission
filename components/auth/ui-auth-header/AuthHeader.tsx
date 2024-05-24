@@ -1,4 +1,4 @@
-import styles from "./LoginHeader.module.scss";
+import styles from "./AuthHeader.module.scss";
 import classNames from "classnames/bind";
 import Link from "next/link";
 import Image from "next/image";
@@ -12,11 +12,7 @@ interface LoginHeaderProps {
   linkName: string;
 }
 
-export default function LoginHeader({
-  href,
-  message,
-  linkName,
-}: LoginHeaderProps) {
+export const AuthHeader = ({ href, message, linkName }: LoginHeaderProps) => {
   return (
     <header className={cx("header-container")}>
       <Link href="/">
@@ -30,4 +26,4 @@ export default function LoginHeader({
       </div>
     </header>
   );
-}
+};

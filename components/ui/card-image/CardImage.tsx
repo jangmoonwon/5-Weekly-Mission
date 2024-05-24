@@ -4,7 +4,7 @@ import Image from "next/image";
 import EmptyImage from "@/public/card-empty-image.png";
 
 interface CardImageProps {
-  imageSource: string;
+  imageSource?: string;
   alt: string;
 }
 

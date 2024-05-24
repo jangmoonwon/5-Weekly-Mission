@@ -1,14 +1,14 @@
 import CardLayout from "@/components/layout/card-layout/CardLayout";
-import CardImage from "@/components/card-image/CardImage";
-import CardContent from "@/components/card-content/CardContent";
+import CardImage from "@/components/ui/card-image/CardImage";
+import CardContent from "@/components/ui/card-content/CardContent";
 import Link from "next/link";
 
 interface CardProps {
   href: string;
-  imageSource: string;
+  imageSource?: string;
   alt: string;
   elapsedTime: string;
-  description: string;
+  description?: string;
   createdAt: string;
 }
 

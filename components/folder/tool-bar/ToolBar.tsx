@@ -4,7 +4,7 @@ import { useFolders } from "@/pages/api/useFolders";
 import ToolBarBtnList from "../tool-bar-button-list/ToolBarBtnList";
 import { useState } from "react";
 import AddFolderButton from "../add-folder-button/AddFolderButton";
-import FolderButtons from "@/components/folder-buttons/FolderButtons";
+import FolderButtons from "@/components/folder/folder-buttons/FolderButtons";
 import Share from "@/public/share.svg";
 import Pen from "@/public/pen.svg";
 import Delete from "@/public/delete.svg";

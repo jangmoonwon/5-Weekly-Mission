@@ -5,7 +5,7 @@ const cx = classNames.bind(styles);
 
 interface CardContentProps {
   elapsedTime: string;
-  description: string;
+  description?: string;
   createdAt: string;
 }
 

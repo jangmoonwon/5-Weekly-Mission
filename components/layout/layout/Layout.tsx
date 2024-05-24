@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import styles from "./Layout.module.scss";
 import classNames from "classnames/bind";
 import Footer from "@/components/footer/Footer";
-import NavigationBar from "@/components/navigation-bar/NavigationBar";
+import NavigationBar from "@/components/header/navigation-bar/NavigationBar";
 import { useUser } from "@/pages/api/useUser";
 
 const cx = classNames.bind(styles);
