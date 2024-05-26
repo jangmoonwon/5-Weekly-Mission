@@ -1,0 +1,38 @@
+.button {
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.red {
+  background-color: #ef4444; /* Tailwind's red-500 */
+  color: white;
+  &:hover {
+    background-color: blue;
+  }
+}
+
+.sky {
+  background-color: #0ea5e9; /* Tailwind's sky-500 */
+  color: white;
+}
+
+.sm {
+  font-size: 8rem; /* Tailwind's text-sm */
+}
+
+.lg {
+  font-size: 11rem; /* Tailwind's text-lg */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.font-weight {
+  font-weight: 100;
+}
