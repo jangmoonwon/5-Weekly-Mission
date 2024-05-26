@@ -1,0 +1,24 @@
+@import "@/styles/global.scss";
+
+.social-login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 40rem;
+  padding: 1.2rem 2.4rem;
+  border: 0.1rem solid $color-grey20;
+  border-radius: 0.8rem;
+  background-color: $color-grey10;
+}
+
+.social-login-text {
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: $color-grey100;
+}
+
+.social-login-icon {
+  display: flex;
+  gap: 1.6rem;
+}
