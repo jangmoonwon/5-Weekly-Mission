@@ -4,11 +4,11 @@ import Image from "next/image";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema, FormFields } from "@/lib/schema";
-import axiosInstance from "@/pages/api/axiosInstance";
 import styles from "./SigninForm.module.scss";
 import classNames from "classnames/bind";
 import Eyeoff from "@/public/eye-off.svg";
 import Eyeon from "@/public/eye-on.svg";
+import signin from "@/pages/api/signin";
 
 const cx = classNames.bind(styles);
 
@@ -33,10 +33,7 @@ export const SigninForm = () => {
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
     try {
-      const res = await axiosInstance.post("/sign-in", data);
-      const newRes = res.data;
-      const accessToken = newRes.data.accessToken;
-
+      const accessToken = await signin(data);
       localStorage.setItem("accessToken", accessToken);
       router.push("/folder");
     } catch (error) {
