@@ -9,11 +9,6 @@ import Share from "@/public/share.svg";
 import Pen from "@/public/pen.svg";
 import Delete from "@/public/delete.svg";
 
-type Folder = {
-  id: number;
-  name: string;
-};
-
 const ALL_FOLDER_ID = 0;
 const ALL_FOLDER_NAME = "전체";
 
@@ -39,7 +34,7 @@ export default function ToolBar() {
           id={ALL_FOLDER_ID}
           onClick={() => handleFolderClick(ALL_FOLDER_ID, ALL_FOLDER_NAME)}
         />
-        {data?.data.map((item: Folder) => (
+        {data?.map((item) => (
           <ToolBarBtnList
             key={item.id}
             currentId={currentId}
