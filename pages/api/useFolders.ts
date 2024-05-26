@@ -1,31 +1,43 @@
 import { useEffect, useState } from "react";
-const BASE_URL = "https://bootcamp-api.codeit.kr/api/";
+import axiosInstance from "./axiosInstance";
+
+type Link = {
+  count: number;
+};
+
+type Data = {
+  id: number;
+  created_at: string;
+  name: string;
+  user_id: number;
+  favorite: boolean;
+  link: Link;
+};
+
+type DataType = {
+  data: Data[];
+};
 
 export function useFolders() {
-  const [data, setData] = useState<null | any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<null | any>(null);
+  const [data, setData] = useState<null | Data[]>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState<null | any>(null);
 
-  const fetchData = async (data: any) => {
+  const fetchData = async () => {
     try {
-      const response = await fetch(`${BASE_URL}users/1/folders`);
-      if (response.ok) {
-        const data = await response.json();
-        setData(data);
-      } else {
-        throw new Error("불러오는데 실패 했습니다.");
-      }
+      const response = await axiosInstance.get<DataType>("/users/1/folders");
+      const data = response.data.data;
+      setData(data);
     } catch (error) {
-      setError(error);
+      setIsError(error);
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchData(data);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchData();
   }, []);
 
-  return { data, loading, error };
+  return { data, isLoading, isError };
 }
