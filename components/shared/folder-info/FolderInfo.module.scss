@@ -1,0 +1,23 @@
+@import "@/styles/global.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0 6rem;
+  background-color: $color-background;
+}
+
+.owner {
+  margin-top: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.folder-name {
+  margin-top: 2rem;
+  font-size: 4rem;
+  font-weight: 600;
+}

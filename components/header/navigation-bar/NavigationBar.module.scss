@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: #f0f6ff;
+
+  &.sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+.items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 9.3rem;
+  max-width: 192rem;
+  padding: 0 20rem;
+}
+
+.profile-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #373740;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.profile {
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 9999px;
+}

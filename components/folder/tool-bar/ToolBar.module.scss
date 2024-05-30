@@ -1,0 +1,38 @@
+.container {
+  display: grid;
+  grid-template-areas:
+    "folders folders add-button"
+    "folder-name buttons buttons";
+  justify-content: space-between;
+  align-items: center;
+  row-gap: 2.4rem;
+  column-gap: 1.2rem;
+  width: 106rem;
+  height: 9.4rem;
+}
+
+.folder-list {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  grid-area: folders;
+}
+
+.add-button {
+  display: flex;
+  justify-content: flex-end;
+  grid-area: add-button;
+}
+
+.folder-name {
+  font-size: 2.4rem;
+  font-weight: 600;
+  grid-area: folder-name;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  grid-area: buttons;
+}
