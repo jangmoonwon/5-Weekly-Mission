@@ -1,6 +1,5 @@
 import styles from "./ToolBar.module.scss";
 import classNames from "classnames/bind";
-import { useFolders } from "@/pages/api/useFolders";
 import ToolBarBtnList from "../tool-bar-button-list/ToolBarBtnList";
 import { useState } from "react";
 import AddFolderButton from "../add-folder-button/AddFolderButton";
@@ -8,6 +7,8 @@ import FolderButtons from "@/components/folder/folder-buttons/FolderButtons";
 import Share from "@/public/share.svg";
 import Pen from "@/public/pen.svg";
 import Delete from "@/public/delete.svg";
+import { getFolders } from "@/pages/api/getFolders";
+import { useQuery } from "@tanstack/react-query";
 
 const ALL_FOLDER_ID = 0;
 const ALL_FOLDER_NAME = "전체";
@@ -15,7 +16,11 @@ const ALL_FOLDER_NAME = "전체";
 const cx = classNames.bind(styles);
 
 export default function ToolBar() {
-  const { data } = useFolders();
+  const { data } = useQuery({
+    queryKey: ["folders"],
+    queryFn: getFolders,
+  });
+
   const [currentId, setCurrentId] = useState(ALL_FOLDER_ID);
   const [currentName, setCurrentName] = useState(ALL_FOLDER_NAME);
 
