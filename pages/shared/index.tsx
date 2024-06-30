@@ -7,39 +7,45 @@ import formatDate from "@/lib/formatDate";
 import { getElapsedTime } from "@/lib/getElapsedTime";
 import styles from "./Shared.module.scss";
 import classNames from "classnames/bind";
-import { useFolder } from "@/pages/hooks-test/useFolder";
+import { getSampleLinks } from "../api/getSampleLinks";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/components/ui/loading/Loading";
 
 const cx = classNames.bind(styles);
 
 export default function Shared() {
-  const { data, isLoading, isError } = useFolder();
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["sampleLinks"],
+    queryFn: getSampleLinks,
+  });
 
-  if (isLoading) return <div>loading</div>;
-  if (isError) return <div>error</div>;
+  if (isLoading) return <Loading />;
+  if (isError) return <div>Error</div>;
   if (!data) return <div>data가 없음</div>;
 
   return (
     <Layout isSticky={false}>
       <div className={cx("container")}>
-        <FolderInfo
+        {/* <FolderInfo
           folderName={data.name}
           ownerName={data.owner.name}
           profileImage={data.owner.profileImageSource}
-        />
+        /> */}
         <div className={cx("item")}>
           <SearchBar />
           <CardList>
-            {data.links.map((link) => (
+            {data.map((link) => (
               <Card
                 key={link.id}
                 href={link.url}
-                imageSource={link.imageSource}
+                imageSource={link.image_source}
                 alt={"card"}
-                elapsedTime={getElapsedTime(link.createdAt)}
+                elapsedTime={getElapsedTime(link.created_at)}
                 description={link.description}
-                createdAt={formatDate(link.createdAt)}
+                createdAt={formatDate(link.created_at)}
               />
             ))}
+            <div></div>
           </CardList>
         </div>
       </div>
