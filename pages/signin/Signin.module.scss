@@ -1,0 +1,72 @@
+@import "@/styles/global.scss";
+
+//login-form
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 40rem;
+}
+
+.label {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 2.4rem 0 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.input-box {
+  display: flex;
+  width: 100%;
+  border-radius: 0.8rem;
+  border: 0.1rem solid $color-grey20;
+  padding: 1.8rem 1.5rem;
+  font-size: 1.6rem;
+  background-color: $color-white;
+  &:focus-within {
+    border: 0.1rem solid $color-primary;
+  }
+}
+
+.error-input-box {
+  border: 0.1rem solid red;
+}
+
+.input {
+  display: flex;
+  width: 100%;
+}
+
+.eye-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  padding-top: 0.6rem;
+  font-size: 1.4rem;
+  color: $color-red;
+}
+
+// login-button
+.button {
+  display: flex;
+  width: 100%;
+  max-width: 40rem;
+  margin-top: 3rem;
+  justify-content: center;
+  border-radius: 0.8rem;
+  background: linear-gradient(91deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+  padding: 1.6rem 2rem;
+  color: #ffff;
+  font-size: 1.8rem;
+  font-weight: 600;
+}

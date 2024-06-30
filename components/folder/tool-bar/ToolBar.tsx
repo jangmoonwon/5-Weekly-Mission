@@ -20,7 +20,6 @@ export default function ToolBar() {
     queryKey: ["folders"],
     queryFn: getFolders,
   });
-
   const [currentId, setCurrentId] = useState(ALL_FOLDER_ID);
   const [currentName, setCurrentName] = useState(ALL_FOLDER_NAME);
 

@@ -45,7 +45,6 @@ export default function Shared() {
                 createdAt={formatDate(link.created_at)}
               />
             ))}
-            <div></div>
           </CardList>
         </div>
       </div>
